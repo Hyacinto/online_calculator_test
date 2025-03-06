@@ -1,13 +1,16 @@
-import sounddevice as sd
-import numpy as np
 from sound import recording_audio
-from transform import speech_recognition
+from transform import speech_recognition    
+import statistics
+import numpy as np
+import pyperclip
 
 buttons = [
     ["⅟x", "(", ")", "AC", "CE"],
     ["±", "x!", "x²", "xⁿ", "%"],
     ["√x", "7", "8", "9", "÷"],
-    ["π", "4", "5", "6", "×"],    ["Rand", "1", "2", "3", "－"],    ["000", "0", ".", "＝", "+"]
+    ["π", "4", "5", "6", "×"],    
+    ["Rand", "1", "2", "3", "－"],    
+    ["000", "0", ".", "＝", "+"]
 ]
 
 def find_button_position(value):
@@ -50,6 +53,28 @@ def test_random_and_round(setup_teardown):
     actual_result = int(page.inner_text('#calculation span'))
 
     assert  actual_result == excepted_result
+
+def test_random_statistically(setup_teardown):
+    page = setup_teardown
+
+    samples = []
+    
+    for i in range(1000):
+        push_button(page, ["Rand"])
+        result = float(page.inner_text('#calculation span'))
+        samples.append(result)
+
+    mean = statistics.mean(samples) # Átlag (mean)
+    median = statistics.median(samples) # Medián (median)
+    stdev = statistics.stdev(samples) # Szórás (std deviation)
+
+    expected_mean = 0.5
+    expected_stdev = np.sqrt(1/12) 
+
+    assert abs(mean - expected_mean) < 0.01
+    assert abs(median - expected_mean) < 0.01
+    assert abs(stdev - expected_stdev) < 0.02
+
 
 def font_size(page):
     style_attr = page.locator(".inputbox").get_attribute("style")
@@ -106,6 +131,18 @@ def test_speech_recognition(setup_teardown):
     recording_audio()
     excepted_result = speech_recognition()
     actual_result = float(page.inner_text('#calculation span').replace(',', ''))
+
+    assert  actual_result == excepted_result
+
+def test_from_clipboard_to_the_screen(setup_teardown):
+    page = setup_teardown
+
+    pyperclip.copy("-3.14")
+
+    page.click('div.icon[onclick="paste()"]')
+
+    actual_result = float(page.inner_text('#calculation span').replace(',', ''))
+    excepted_result = -3.14
 
     assert  actual_result == excepted_result
 

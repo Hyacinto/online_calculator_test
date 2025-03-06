@@ -27,7 +27,7 @@ def pytest_generate_tests(metafunc):
 @pytest.fixture(scope="session")
 def setup_teardown():
     with sync_playwright() as p:
-        browser = p.firefox.launch(headless=False)
+        browser = p.firefox.launch(headless=True)
         page = browser.new_page() 
         page.goto("https://calculatorlib.com/basic-calculator")
         close_button = page.locator("button.fc-close:nth-child(1)")
