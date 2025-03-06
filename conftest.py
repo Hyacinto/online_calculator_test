@@ -9,8 +9,11 @@ def read_test_data():
         for row in reader:
             
             params_str, result = row[0], row[1] 
-            params = tuple(params_str.split(','))  
-            result = int(result)  
+            params = tuple(params_str.split(','))
+            if result == "Error":
+                result = "Error"
+            else:  
+                result = float(result)  
             test_cases.append((params, result))  
 
     return test_cases
@@ -32,5 +35,5 @@ def setup_teardown():
         close_button.click()
         yield page
         ac_button = page.locator(".btn .char", has_text="AC")
-        ac_button.click()
+        ac_button.click(click_count=2)
         browser.close()
