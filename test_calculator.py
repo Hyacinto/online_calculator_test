@@ -137,9 +137,10 @@ def test_speech_recognition(setup_teardown):
 def test_from_clipboard_to_the_screen(setup_teardown):
     page = setup_teardown
 
-    pyperclip.copy("-3.14")
+    #pyperclip.copy("-3.14")
 
     page.click('div.icon[onclick="paste()"]')
+   
 
     actual_result = float(page.inner_text('#calculation span').replace(',', ''))
     excepted_result = -3.14
