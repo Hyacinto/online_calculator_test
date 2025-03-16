@@ -5,19 +5,13 @@ This project is designed to test the functionality of an online calculator using
 ## Project Structure
 
 ```
-.gitignore
 conftest.py
 data.csv
 push_buttons.py
 sound.py
 test_calculator.py
 transform.py
-.vscode/
-    settings.json
-.pytest_cache/
-    ...
-__pycache__/
-    ...
+
 ```
 
 - **conftest.py**: Contains setup and teardown functions for the tests, as well as functions to read test data from `data.csv`.
@@ -26,7 +20,6 @@ __pycache__/
 - **sound.py**: Contains functions to record audio.
 - **test_calculator.py**: Contains the test cases for the calculator.
 - **transform.py**: Contains functions to perform speech recognition on recorded audio.
-- **.vscode/settings.json**: Contains VSCode settings for the project.
 
 ## Setup
 
@@ -50,7 +43,7 @@ __pycache__/
 
 To run the tests, use the following command:
 ```sh
-pytest
+pytest test_calculator.py
 ```
 
 ## Test Data
