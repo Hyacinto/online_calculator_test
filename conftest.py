@@ -1,4 +1,5 @@
 import csv
+import time
 import pytest
 from playwright.sync_api import sync_playwright
 
@@ -34,6 +35,8 @@ def setup_teardown():
         close_button.wait_for(state='visible')
         close_button.click()
         yield page
-        ac_button = page.locator(".btn .char", has_text="AC")
-        ac_button.click(click_count=2)
-        browser.close()
+        
+   
+
+        
+
