@@ -1,6 +1,10 @@
+![Calculator](calc.png)
+
 # Online Calculator Test
 
-This project is designed to test the functionality of an online calculator using automated tests. The tests are written in Python and utilize the Playwright library for browser automation, as well as Pytest for running the tests.
+This project is designed to test the functionality of an online calculator using automated tests. The tests are written in [![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](https://www.python.org/) and utilize the [![Playwright](https://img.shields.io/badge/Playwright-2B2D42?style=for-the-badge&logo=playwright&logoColor=white)](https://playwright.dev) library for [![Firefox](https://img.shields.io/badge/Firefox-FF7139?style=for-the-badge&logo=firefox-browser&logoColor=white)](https://www.mozilla.org/firefox/) automation, as well as [![Pytest](https://img.shields.io/badge/Pytest-0A0A0A?style=for-the-badge&logo=pytest&logoColor=white)](https://docs.pytest.org/) for running the tests.
+
+In order to keep the code and the test process itself as simple and easy to extend and maintain as possible, most test cases are parameterized and use the same single function.
 
 ## Project Structure
 
